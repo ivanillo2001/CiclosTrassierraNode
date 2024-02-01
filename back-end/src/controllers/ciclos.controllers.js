@@ -62,4 +62,19 @@ export const mostrarAlumnos = async (req, res) => {
     });
   }
 };
-
+export const grabarDatos = async (req,res)=>{
+  try {
+    console.log("Pasa1");
+    console.log(req.query);
+    const {idCurso, idModulo,idAlumno,calificacion}=req.body;
+    console.log("Pasa 2");
+    console.log(req.body);
+    const [result]= await conexion.query("INSERT INTO calificaciones (idCalificaciones, idCurso, idModulo, idAlumno, calificacion) VALUES (NULL,?,?,?,?)",[idCurso,idModulo,idAlumno,calificacion])
+    res.status(201).json({ idCurso: result.insertId });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: "Error en el servidor",
+    });
+  }
+}
