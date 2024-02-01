@@ -41,7 +41,7 @@ function mostrarModulos(idCurso) {
     type: "GET",
   })
     .done(function (responseText) {
-      // console.log(responseText); //se muestra por consola los modulos
+
       $("#modulos").empty(); //limpiamos la lista
       //agregamos option de "Selecciona un modulo"
       $("#modulos").append(`<option>Selecciona un modulo</option>`);
@@ -102,12 +102,6 @@ function addDragAndDrop() {
   //ahora hacemos draggable a los elementos de la clase arrastrar
   $(".arrastrar").draggable({
     helper: "clone",
-    start: (event, ui) => {
-      console.log("Nota arrastrada " + ui.helper.text()); //pruebas para validar el drag
-    },
-    stop: (event, ui) => {
-      console.log("Nota soltada " + ui.helper.text()); //pruebas para validar el drag
-    },
   });
   // hacemos droppables los elementos de la clase notaArrastrada
   $(".notaArrastrada").droppable({
@@ -129,7 +123,6 @@ function addDragAndDrop() {
           transform: "translate(-50%, -50%)",
         })
         .appendTo(dropTarget);
-      console.log("Has soltado un " + ui.helper.text()); //pruebas para validar el drop
     },
   });
 }
@@ -146,11 +139,7 @@ function grabarDatos(curso, modulo) {
     let datosAlumno = alumno.find("td:first-child");
     let nota = alumno.find(".notaArrastrada");
     let idAlumno = datosAlumno.attr("id");
-    let contenidoNombre = datosAlumno.text();
     let contenidoNota = nota.text();
-    console.log(
-      "Alumno " + idAlumno + " - " + contenidoNombre + " - " + contenidoNota
-    );
 //almacenamos los datos en una body json
     const datos = {
       idCurso: curso,
