@@ -1,7 +1,5 @@
 "use strict";
 
-// import { response } from "express";
-
 let curso;
 let modulo;
 window.addEventListener("DOMContentLoaded", () => {
